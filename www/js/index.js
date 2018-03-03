@@ -17,57 +17,63 @@
  * under the License.
  */
 var app = {
-    // Application Constructor
-    initialize: function() {
-        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
-    },
+// Application Constructor
+  initialize: function () {
+    document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+  },
+  // deviceready Event Handler
+  //
+  // Bind any cordova events here. Common events are:
+  // 'pause', 'resume', etc.
+  onDeviceReady: function () {
+    this.actions();
+  },
 
-    // deviceready Event Handler
-    //
-    // Bind any cordova events here. Common events are:
-    // 'pause', 'resume', etc.
-    onDeviceReady: function() {
-        this.receivedEvent('deviceready');
-        this.actions();
-    },
+  transformText: function () {
+    var txt = "";
+    $("#white-eyes").click(function () {
+      txt = $("#origin").val();
+      txt = txt.replace(/[aeiouáéíóú]/igm, "i");
+      $("#destiny").val(txt);
+    });
+  },
 
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
-    },
-
-    notification: function () {
+  copy: function () {
+    $("#copy").click(function () {
+      $("#destiny").select();
+      document.execCommand("Copy");
       navigator.notification.beep(2);
       navigator.notification.alert(
-        'Has copiado el texto!', // message
-         "",            // callback to invoke with index of button pressed
-        'Copiado',           // title
-        ['Ok']     // buttonLabels
-    );
-    },
+          'Has copiado el texto!',
+          null,
+          'Copiado',
+          ['Ok']
+          );
+    });
+  },
 
-    actions: function () {
-      $(document).ready(function () {
-        var txt = "";
-        $("#white-eyes").click(function () {
-          txt = $("#origin").val();
-          txt = txt.replace(/[aeiouáéíóú]/igm, "i");
-          $("#destiny").val(txt);
-        });
-        $("copy").click(function () {
-          $("#destiny").select();
-          document.execCommand("Copy");
-          this.notification
-        });
-      });
-    }
+  getJson: function (file) {
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    rawFile.onreadystatechange = function () {
+      if (rawFile.readyState === 4) {
+        if (rawFile.status === 200 || rawFile.status == 0) {
+          var allText = rawFile.responseText;
+          return allText;
+        }
+      }
+
+      rawFile.send(null);
+    };
+
+  },
+
+  actions: function () {
+    $(document).ready(function () {
+      this.transformText();
+      this.copy();
+      alert(getJson());
+    });
+  }
 };
-
 app.initialize();
