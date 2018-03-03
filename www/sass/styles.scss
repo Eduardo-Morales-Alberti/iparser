@@ -1,9 +1,7 @@
-* {
+html, * {
     font-family: 'Helvetica', sans-serif;
-}
-
-html {
-    font-size: 60%;
+    font-size: 40%;
+    background-color: #ffdfb8;
 }
 
 .wrapper {
@@ -12,12 +10,13 @@ html {
 
     h1 {
         font-size: 6rem;
+        color: #ff9800;
     }
 
     textarea {
         width: 100%;
         resize: none;
-        height: 30vh;
+        height: 20vh;
         font-size: 3rem;
     }
 

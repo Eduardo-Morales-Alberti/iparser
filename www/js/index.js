@@ -28,6 +28,7 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
         this.receivedEvent('deviceready');
+        this.actions();
     },
 
     // Update DOM on a Received Event
@@ -40,6 +41,32 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
+    },
+
+    notification: function () {
+      navigator.notification.beep(2);
+      navigator.notification.alert(
+        'Has copiado el texto!', // message
+         "",            // callback to invoke with index of button pressed
+        'Copiado',           // title
+        ['Ok']     // buttonLabels
+    );
+    },
+
+    actions: function () {
+      $(document).ready(function () {
+        var txt = "";
+        $("#white-eyes").click(function () {
+          txt = $("#origin").val();
+          txt = txt.replace(/[aeiouáéíóú]/igm, "i");
+          $("#destiny").val(txt);
+        });
+        $("copy").click(function () {
+          $("#destiny").select();
+          document.execCommand("Copy");
+          this.notification
+        });
+      });
     }
 };
 
