@@ -30,9 +30,8 @@ var app = {
   },
 
   transformText: function () {
-    var txt = "";
     $("#white-eyes").click(function () {
-      txt = $("#origin").val();
+      var txt = $("#origin").val();
       txt = txt.replace(/[aeiouáéíóú]/igm, "i");
       $("#destiny").val(txt);
     });
@@ -52,28 +51,36 @@ var app = {
     });
   },
 
-  getJson: function (file) {
-    var rawFile = new XMLHttpRequest();
-    rawFile.open("GET", file, false);
-    rawFile.onreadystatechange = function () {
-      if (rawFile.readyState === 4) {
-        if (rawFile.status === 200 || rawFile.status == 0) {
-          var allText = rawFile.responseText;
-          return allText;
-        }
-      }
-
-      rawFile.send(null);
-    };
-
-  },
-
   actions: function () {
     $(document).ready(function () {
       this.transformText();
       this.copy();
-      alert(getJson());
     });
   }
 };
 app.initialize();
+
+//      var json = this.getJson("https://raw.githubusercontent.com/Eduardomoberti/iparser/master/www/json/words.json");
+//      if(!json) {
+//        json = this.getJson("json/words.json");
+//      }
+//      navigator.notification.alert(
+//        json,
+//        null,
+//        'JSON',
+//        ['Ok']
+//      );
+
+//  getJson: function (file) {
+//    $.getJSON(file)
+//      .done(function(data) {
+//        return data;
+//      })
+//      .fail(function() {
+//        console.log( "error, file not found" );
+//        return false;
+//      })
+//      .always(function() {
+//        console.log( "complete" );
+//      });
+//  },
