@@ -1,19 +1,21 @@
 html, * {
   font-family: 'Helvetica', sans-serif;
-  font-size: 40%;
   background-color: #ffdfb8; }
+
+body {
+  font-size: 1rem; }
 
 .wrapper {
   padding: 0 15px;
   text-align: center; }
   .wrapper h1 {
-    font-size: 6rem;
+    font-size: 3rem;
     color: #ff9800; }
   .wrapper textarea {
     width: 100%;
     resize: none;
     height: 20vh;
-    font-size: 3rem; }
+    font-size: 2rem; }
   .wrapper .btn-wrapper {
     padding: 15px; }
     .wrapper .btn-wrapper #white-eyes {
@@ -27,3 +29,5 @@ html, * {
       padding: 0px; }
       .wrapper .btn-wrapper #copy img {
         width: 50px; }
+    .wrapper .btn-wrapper #json, .wrapper .btn-wrapper #json2 {
+      padding: 30px; }
