@@ -2,18 +2,24 @@
 <html>
     <head>
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <link rel="stylesheet" type="text/css" href="css/index.css">
-        <title>Hello World</title>
+        <link rel="stylesheet" type="text/css" href="css/styles.css">
+        <script src="js/index.js"></script>
+        <script src="js/jquery.min.js"></script>
+        <title>I Parser</title>
     </head>
     <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
+        <div class="wrapper">
+            <h1>I Parser</h1>
+            <textarea id="origin"></textarea>
+            <div class="btn-wrapper">
+                <button id="white-eyes"><img src="img/whiteeyesmall.png" alt="white eyes icon"></button>
+            </div>
+            <textarea id="destiny"></textarea>
+            <div class="btn-wrapper">
+                <button id="copy"><img src="img/copy.png" alt="copy icon"></button>
             </div>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/script.js"></script>
     </body>
 </html>

@@ -1,0 +1,29 @@
+* {
+  font-family: 'Helvetica', sans-serif; }
+
+html {
+  font-size: 60%; }
+
+.wrapper {
+  padding: 0 15px;
+  text-align: center; }
+  .wrapper h1 {
+    font-size: 6rem; }
+  .wrapper textarea {
+    width: 100%;
+    resize: none;
+    height: 30vh;
+    font-size: 3rem; }
+  .wrapper .btn-wrapper {
+    padding: 15px; }
+    .wrapper .btn-wrapper #white-eyes {
+      background: none;
+      border: none;
+      border-radius: 50%;
+      padding: 0px; }
+    .wrapper .btn-wrapper #copy {
+      background: none;
+      border: none;
+      padding: 0px; }
+      .wrapper .btn-wrapper #copy img {
+        width: 50px; }
