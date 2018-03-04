@@ -1,4 +1,4 @@
-# IPARSER ![IPARSER](res/icon/android/icon-48-mdpi.png)
+# ![IPARSER](res/icon/android/icon-48-mdpi.png) IPARSER
 Cordova app - This application transforms all vowels to vowel i.
 
 ## Instalation
