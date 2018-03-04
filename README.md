@@ -39,4 +39,5 @@ Cordova needs to be installed and if you want to run in a android emulator you
  needs the SDK library.
 
 ## Interesting documentation.
+**Apache cordova**
 [![Apache cordova](res/icon/android/icon-72-hdpi.png)](https://cordova.apache.org/docs)
