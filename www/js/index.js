@@ -71,7 +71,7 @@ var app = {
 
         // Its remove the specials characters and transform the text to
         // lowercase.
-        var txtreplace = txt.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
+        var txtreplace = txt.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
 
         var txtorigin = txt.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
 
@@ -88,8 +88,8 @@ var app = {
 
             // Replace word if false or not exists value in that index.
             if(!value[2]) {
-
-              txtreplace = txtreplace.replace(txtcomparing, value[1]);
+              var reg = new RegExp(txtcomparing, "ig");
+              txtreplace = txtreplace.replace(reg, value[1]);
 
             } else {
 
