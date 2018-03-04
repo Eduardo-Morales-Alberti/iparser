@@ -65,7 +65,7 @@ var app = {
         var txt = $("#origin").val();
 
         // The text vocals are replaced by i vocals.
-        var final = txt.replace(/[aeiouáéíóú]/igm, "i");
+        var final = txt.normalize('NFD').replace(/[\u0300-\u036f]/g, "").replace(/[aeiouáéíóú]/igm, "i");
 
         var rewrite = false;
 
