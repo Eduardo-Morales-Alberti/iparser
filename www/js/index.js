@@ -20,48 +20,89 @@
 var app = {
 // Application Constructor
   initialize: function () {
-    //document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
-    this.onDeviceReady();
+    document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+    //this.onDeviceReady();
   },
 
   json: "",
 
-  getJson: function (file) {
-    $.getJSON(file, function (data) {
-      $("#destiny").val(JSON.stringify(data));
+  getJson: function () {
+
+    $.getJSON("https://raw.githubusercontent.com/Eduardomoberti/iparser/master/www/json/words.json", function (data) {
+
+      app.json = data;
+
+    }).fail(function () {
+
+      $.getJSON("json/words.json", function (data) {
+
+        app.json = data;
+        console.log("local");
+
+      });
+    }).always(function () {
+      console.log(JSON.stringify(app.json));
     });
-   
   },
 
   onDeviceReady: function () {
+
     $(document).ready(function () {
+
+      $.ajaxSetup({cache: false});
+
       $("#white-eyes").click(function () {
+
         var txt = $("#origin").val();
-        txt = txt.replace(/[aeiouáéíóú]/igm, "i");
-        $("#destiny").val(txt);
-       });
+
+        var final = txt.replace(/[aeiouáéíóú]/igm, "i");
+
+        var rewrite = false;
+
+        var txtreplace = txt.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+        var txtorigin = txt.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+        $.each(app.json, function (index, value) {
+
+          var txtcomparing = value[0].normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+          if (txtorigin.includes(txtcomparing)) {
+
+            rewrite = true;
+
+            txtreplace = txtreplace.replace(txtcomparing, value[1]);
+
+          }
+
+        });
+
+        if (rewrite) {
+          final = txtreplace;
+        }
+
+        $("#destiny").val(final);
+
+      });
 
       $("#copy").click(function () {
+
         $("#destiny").select();
+
         document.execCommand("Copy");
-        navigator.notification.beep(2);
+
         navigator.notification.alert(
-          'Has copiado el texto!',
-          null,
-          'Copiado',
-          ['Ok']
-          );
+            'Has copiado el texto!',
+            null,
+            'Copiado',
+            ['Ok']
+            );
+
       });
 
-      $("#json").click(function () {
-        app.getJson("json/words.json")
-      });
-      $("#json2").click(function () {
-        app.getJson("https://raw.githubusercontent.com/Eduardomoberti/iparser/master/www/json/words.json")
-      });
+      app.getJson("json/words.json");
 
     });
   }
-
 };
 app.initialize();
