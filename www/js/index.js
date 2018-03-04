@@ -20,8 +20,8 @@
 var app = {
 // Application Constructor
   initialize: function () {
-    document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
-    //this.onDeviceReady();
+    //document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+    this.onDeviceReady();
   },
 
   json: "",
@@ -71,7 +71,17 @@ var app = {
 
             rewrite = true;
 
-            txtreplace = txtreplace.replace(txtcomparing, value[1]);
+            // Replace if false or not exists value in that index.
+            if(!value[2]) {
+
+              txtreplace = txtreplace.replace(txtcomparing, value[1]);
+
+            } else {
+
+              // Replace all text if index 2 is true.
+              txtreplace = value[1];
+              return;
+            }
 
           }
 
