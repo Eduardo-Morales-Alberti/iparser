@@ -11,6 +11,10 @@ body {
   .wrapper h1 {
     font-size: 2rem;
     color: #ff9800; }
+  .wrapper #meme {
+    margin: 15px; }
+    .wrapper #meme img#memeimg {
+      max-height: 20vh; }
   .wrapper textarea {
     width: 100%;
     resize: none;

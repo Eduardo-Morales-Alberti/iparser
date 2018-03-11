@@ -16,6 +16,14 @@ body {
         color: #ff9800;
     }
 
+    #meme {
+      margin: 15px;
+
+      img#memeimg {
+        max-height: 20vh;
+      }
+    }
+
     textarea {
         width: 100%;
         resize: none;

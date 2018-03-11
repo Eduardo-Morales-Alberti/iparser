@@ -87,6 +87,13 @@ var app = {
 
             rewrite = true;
             var txtsust = app.removeAccents(value[1]);
+
+            // Create image if the index not empty.
+            if(value[3]) {
+              app.showImg(value[3]);
+            }else {
+              $("#memeimg").hide();
+            }
             // Replace word if false or not exists value in that index.
             if(!value[2]) {
 
@@ -98,9 +105,7 @@ var app = {
               txtreplace = txtsust;
               return;
             }
-
           }
-
         });
 
         // If the text was replaced then the final var
@@ -136,7 +141,7 @@ var app = {
     });
   },
 
-  removeAccents: function(str) {
+  removeAccents: function (str) {
     var accents    = 'ÁáÉéÍíÓóÚú';
     var accentsOut = "AaEeIiOoUu";
     str = str.split('');
@@ -148,6 +153,18 @@ var app = {
      }
     }
     return str.join('');
+  },
+
+  showImg: function (src) {
+    var img = document.getElementById("memeimg");
+    if(!img) {
+      img = document.createElement("img");
+      img.setAttribute("id", "memeimg");
+    }
+    img.setAttribute("src", src);
+    var div = document.getElementById("meme");
+    div.appendChild(img);
+    $("#memeimg").show();
   }
 };
 

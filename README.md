@@ -16,12 +16,13 @@ But if any word in your text is in the json, then it will be replaced by the
 ## Writing json to replace words.
 **First is the order to apply the replacements *"0", "1"* then the word or
  text to replace *["word",*, third the replacement *, "final text"* and
- finally, if it will replace all text or only the match, *true* will replace all
- textarea value by the replacement.**
+ then, if it will replace all text or only the match, *true* will replace all
+ textarea value by the replacement, finally a image if you want to show it.**
 ```
 {
   "0": ["word", "replacement"],
-  "1": ["other text", "final text", true]
+  "1": ["other text", "final text", true],
+  "1": ["Foo", "lorem ipsum", false, "img"]
 }
 ```
 

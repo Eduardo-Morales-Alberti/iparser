@@ -1,6 +1,6 @@
 {
     "0": ["cielo", "mi vida"],
-    "1": ["cielito", "pichoncito", true],
+    "1": ["cielito", "pichoncito", true, "img/meme.jpg"],
     "2": ["te superquieramo", "te superrequetemegamo", true],
-    "3": ["te quiero", "te superquieramo"]
+    "3": ["te quiero", "te superquieramo", false, "img/meme.jpg"]
 }
