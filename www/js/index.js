@@ -61,7 +61,7 @@ var app = {
 
       // On click white eyes button its gets the text from origin textarea.
       $("#white-eyes").click(function () {
-
+        $("#memeimg").hide();
         var txt = app.removeAccents($("#origin").val());
 
         // The text vocals are replaced by i vocals.
@@ -91,8 +91,6 @@ var app = {
             // Create image if the index not empty.
             if(value[3]) {
               app.showImg(value[3]);
-            }else {
-              $("#memeimg").hide();
             }
             // Replace word if false or not exists value in that index.
             if(!value[2]) {
