@@ -62,39 +62,40 @@ var app = {
       // On click white eyes button its gets the text from origin textarea.
       $("#white-eyes").click(function () {
 
-        var txt = $("#origin").val();
+        var txt = app.removeAccents($("#origin").val());
 
         // The text vocals are replaced by i vocals.
-        var final = txt.normalize('NFD').replace(/[\u0300-\u036f]/g, "").replace(/[aeiouáéíóú]/igm, "i");
+        var final = txt.replace(/[aeiou]/igm, "i");
 
         var rewrite = false;
 
         // Its remove the specials characters and transform the text to
         // lowercase.
-        var txtreplace = txt.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+        var txtreplace = txt;
 
-        var txtorigin = txt.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
+        var txtorigin = txt;
 
         // Foreach the json and compared the values with the text.
         $.each(app.json, function (index, value) {
 
-          var txtcomparing = value[0].normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
+          var wordc = app.removeAccents(value[0]);
 
           // If the text origin includes the value of the json file then replace
           // the origin with the value.
-          if (txtorigin.includes(txtcomparing)) {
+          var regexp = new RegExp(wordc, "ig");
+          if (txtorigin.match(regexp)) {
 
             rewrite = true;
-
+            var txtsust = app.removeAccents(value[1]);
             // Replace word if false or not exists value in that index.
             if(!value[2]) {
-              var reg = new RegExp(txtcomparing, "ig");
-              txtreplace = txtreplace.replace(reg, value[1]);
+
+              var reg = new RegExp(wordc, "ig");
+              txtreplace = txtreplace.replace(reg, txtsust);
 
             } else {
-
               // Replace all text if index 2 in json is true.
-              txtreplace = value[1];
+              txtreplace = txtsust;
               return;
             }
 
@@ -105,7 +106,7 @@ var app = {
         // If the text was replaced then the final var
         // will be the text replaced.
         if (rewrite) {
-          final = txtreplace;
+          final = txtreplace.replace(/[aeiou]/igm, "i");
         }
 
         // Shows the text in the destiny textarea.
@@ -133,6 +134,20 @@ var app = {
       app.getJson("json/words.json");
 
     });
+  },
+
+  removeAccents: function(str) {
+    var accents    = 'ÁáÉéÍíÓóÚú';
+    var accentsOut = "AaEeIiOoUu";
+    str = str.split('');
+    var strLen = str.length;
+    var i, x;
+    for (i = 0; i < strLen; i++) {
+     if ((x = accents.indexOf(str[i])) != -1) {
+       str[i] = accentsOut[x];
+     }
+    }
+    return str.join('');
   }
 };
 

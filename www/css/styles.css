@@ -9,13 +9,16 @@ body {
   padding: 0 15px;
   text-align: center; }
   .wrapper h1 {
-    font-size: 3rem;
+    font-size: 2rem;
     color: #ff9800; }
   .wrapper textarea {
     width: 100%;
     resize: none;
     height: 20vh;
-    font-size: 2rem; }
+    font-size: 1.2rem;
+    border: 1px solid #fff;
+    background-color: #ff8d00;
+    color: white; }
   .wrapper .btn-wrapper {
     padding: 15px; }
     .wrapper .btn-wrapper #white-eyes {
